@@ -56,6 +56,13 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
         - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+      Tags:
+        - Key: yor_trace
+          Value: f4be41d4-b2c1-44f8-8408-aebfb4407772
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   VPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -65,12 +72,24 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-VPC'
+        - Key: yor_trace
+          Value: 3bc6167e-b730-43d9-8e01-737398112605
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   InternetGateway:
     Type: "AWS::EC2::InternetGateway"
     Properties:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-Internet Gateway'
+        - Key: git_repo
+          Value: cfngoat
+        - Key: yor_trace
+          Value: 5e3c8d72-5848-4e1d-8a1e-f19ef1a06f6c
+        - Key: git_org
+          Value: stu100wyatt
   VPCGatewayAttachment:
     Type: "AWS::EC2::VPCGatewayAttachment"
     Properties:
@@ -85,6 +104,12 @@ Resources:
           Value: Public Subnets
         - Key: Network
           Value: Public
+        - Key: yor_trace
+          Value: ec0a48fc-21fb-4a96-bb9a-424a0f2a6e28
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   PrivateRouteTable01:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -94,6 +119,12 @@ Resources:
           Value: Private Subnet AZ1
         - Key: Network
           Value: Private01
+        - Key: yor_trace
+          Value: 4c6f6b02-20c2-41a4-8fbb-9c6e531bf09f
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   PrivateRouteTable02:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -103,6 +134,12 @@ Resources:
           Value: Private Subnet AZ2
         - Key: Network
           Value: Private02
+        - Key: git_repo
+          Value: cfngoat
+        - Key: yor_trace
+          Value: 23acd679-ff6d-451e-b494-037d501dcbcf
+        - Key: git_org
+          Value: stu100wyatt
   PublicRoute:
     DependsOn:
     - VPCGatewayAttachment
@@ -141,6 +178,12 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-NatGatewayAZ1'
+        - Key: yor_trace
+          Value: 74f3ffc7-8a03-4a6e-aa93-8d5245c0f677
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   NatGateway02:
     DependsOn:
     - NatGatewayEIP2
@@ -153,18 +196,38 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-NatGatewayAZ2'
+        - Key: yor_trace
+          Value: cf38393e-a6cd-4b04-b450-82db9bbe7d39
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   NatGatewayEIP1:
     DependsOn:
     - VPCGatewayAttachment
     Type: 'AWS::EC2::EIP'
     Properties:
       Domain: vpc
+      Tags:
+        - Key: git_repo
+          Value: cfngoat
+        - Key: yor_trace
+          Value: dec84f5b-5532-405e-b6c8-6528da1c7de8
+        - Key: git_org
+          Value: stu100wyatt
   NatGatewayEIP2:
     DependsOn:
     - VPCGatewayAttachment
     Type: 'AWS::EC2::EIP'
     Properties:
       Domain: vpc
+      Tags:
+        - Key: yor_trace
+          Value: 4285bfe7-8ede-4de0-a28b-dcee0ea2c569
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   PublicSubnet01:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -182,6 +245,12 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet01"
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
+        - Key: yor_trace
+          Value: 3c85ab16-4b3a-436e-acfe-9b30463c0753
   PublicSubnet02:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -199,6 +268,12 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet02"
+        - Key: yor_trace
+          Value: 7a4bafa7-1d1d-4807-9a51-1bb31580c727
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   PrivateSubnet01:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -218,6 +293,12 @@ Resources:
           Value: !Sub "${AWS::StackName}-PrivateSubnet01"
         - Key: "kubernetes.io/role/internal-elb"
           Value: "1"
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
+        - Key: yor_trace
+          Value: a393112b-5c37-4d62-972b-b7f903bbbe81
   PrivateSubnet02:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -237,6 +318,12 @@ Resources:
           Value: !Sub "${AWS::StackName}-PrivateSubnet02"
         - Key: "kubernetes.io/role/internal-elb"
           Value: "1"
+        - Key: yor_trace
+          Value: af148bdc-74e6-43df-985c-d88eeb9ef109
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   PublicSubnet01RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -262,6 +349,13 @@ Resources:
     Properties:
       GroupDescription: Cluster communication with worker nodes
       VpcId: !Ref VPC
+      Tags:
+        - Key: yor_trace
+          Value: 4f34729b-8a69-4a19-a661-f5c2c94e7609
+        - Key: git_org
+          Value: stu100wyatt
+        - Key: git_repo
+          Value: cfngoat
   EKSCluster:
     Type: AWS::EKS::Cluster
     Properties:
